@@ -12,12 +12,12 @@ Description:  解析 pcap 文件 获取 数据
 import json
 
 
-#gPC_IP = "169.254.240.253"   #笔记本电脑的ip地址
-gPC_IP = "169.254.152.227"   #笔记本电脑的ip地址
-#gECU_IP = "169.254.48.1"     #实体ecu的ip地址
-gECU_IP = "169.254.67.16"     #实体ecu的ip地址
-gB_IP = "255.255.255.255"   #广播地址
+gB_IP   = "255.255.255.255"   #广播地址
+gPC_IP  = "169.254.240.253"   #笔记本电脑的ip地址
+gECU_IP = "169.254.78.114"     #实体ecu的ip地址
 
+gJsonPath = u"../../txt/data.json"  #设置Json文件路径
+gOutFilePath = u"../../doc/tmp/data.txt"   #输出文件路径
 
 def store(data):
     with open('data.json', 'w') as json_file:
@@ -31,12 +31,10 @@ def load(filePath):
 
 
 if __name__ == "__main__":
-    #dataList  = load(u"../../txt/data.json")
-    # dataList  = load(u"../../txt/gg.json")
-    dataList  = load(u"../../txt/实体ecu的数据.json")
 
+    dataList  = load(gJsonPath)
 
-    with open(u"../../doc/tmp/cmd_rr.txt", "w") as outFile:
+    with open(gOutFilePath, "w") as outFile:
         for eachDict in dataList:
 
             if "data" not in eachDict["_source"]["layers"]:
