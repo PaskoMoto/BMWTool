@@ -8,14 +8,22 @@ Description:生成3062 算法表达式
 
 from lib.mytool12 import Add0x
 
-gInConfigPath = '../../txt/3062_CONFIG.TXT'
+is3062 = 0
+
+
 #gOutputConfigPath = '../../doc/tmp/3062_config.txt'
 #gOutputIndexPath = '../../doc/tmp/3062_index.txt'
 #gOutputTextPath = '../../doc/tmp/3062_Text.txt'
-gCmd = '3062'
+gInConfigPath = ''
+gCmd = ''
+if is3062:
+	gInConfigPath = '../../txt/3062_CONFIG.TXT'
+	gCmd = '3062'
+else:
+	gCmd = '3063'
+	gInConfigPath = '../../txt/3063_CONFIG.TXT'
+
 gVStrList = []
-
-
 
 gIndexFilePath = "../../doc/tmp/cfgIndex.txt"
 gOutConfigPath = "../../doc/tmp/config.txt"
@@ -162,7 +170,11 @@ def main():
 
 	global gOutputIndexFile
 	gOutputIndexFile = open(gIndexFilePath, 'a')
-	gOutputIndexFile.write("0x00,0x00,0x00,0x22,0x30,0x62\t\t\"\\ \n")
+	if is3062:
+		gOutputIndexFile.write("0x00,0x00,0x00,0x22,0x30,0x62\t\t\"\\ \n")
+	else: #30 63
+		gOutputIndexFile.write("0x00,0x00,0x00,0x22,0x30,0x63\t\t\"\\ \n")
+
 	gOutputIndexFile.write('[Items]\t\t\t\t\t\\n\\ \n')
 
 	cfgList = []
@@ -185,7 +197,10 @@ def main():
 	vStrDict = {}
 	with open(goutTextPath, 'a') as outTextFile:
 		for i in range(len(gVStrList)):
-			index = "30620000%04X" % (i)
+			if is3062:
+				index = "30620000%04X" % (i)
+			else:
+				index = "30630000%04X" % (i)
 			# print(Add0x(index))
 			vStrDict[gVStrList[i].strip()] = Add0x(index)
 
@@ -223,7 +238,7 @@ def main2():
 	#copy(gOutConfigPath, r'E:\Work\Makers\LAMP\BMW\LIBTEXT\config.txt')
 
 	from lib.mytool12 import ShowMessageBox
-	ShowMessageBox('提示', '请继续运行 3063的工具')
+	# ShowMessageBox('提示', '请继续运行 3063的工具')
 
 	pass
 
