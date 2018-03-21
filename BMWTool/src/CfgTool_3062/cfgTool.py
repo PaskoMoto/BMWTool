@@ -145,7 +145,7 @@ def DealCfg(cfg, no):
 	splitList = cfg.split('\t')
 
 	if len(splitList) < 3:
-		print(cfg)
+		print(cfg + "发生了错误， 请检查！")
 		return "ERROR 0"
 	cfgName = splitList[0]  #配置名称
 	items = splitList[1]    #起始字节 长度 控制类型

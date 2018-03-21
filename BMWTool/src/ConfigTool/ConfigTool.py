@@ -153,7 +153,7 @@ def main():
 			k = tmpList[0].strip()
 			v = tmpList[1].strip()[1:-1]
 
-			print("{0}={1}".format(k, v))
+			# print("{0}={1}".format(k, v))
 
 			gCN_TEXTDict[k] = v
 
